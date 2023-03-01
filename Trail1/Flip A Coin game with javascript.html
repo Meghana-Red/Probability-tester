@@ -133,7 +133,7 @@
 
         <div class="coin" id="coin">
             <div class="heads">
-                <img src="assets\Meghana_Photo.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                <img src="https://jkscoinworld.com/wp-content/uploads/2018/05/2013-a-1.jpg">
             </div>
             <div class="tails">
                 <img
@@ -162,24 +162,24 @@
         let resetBtn = document.querySelector("#reset-button");
 
         flipBtn.addEventListener("click", () => {
-            for (let z = 0; z < 100; z++) {
-                let i = Math.floor(Math.random() * 2);
-                coin.style.animation = "none";
-                if (i) {
-                    setTimeout(function () {
-                        coin.style.animation = "spin-heads 0.6s forwards";
-                    }, 10);
-                    heads++;
-                }
-                else {
-                    setTimeout(function () {
-                        coin.style.animation = "spin-tails 0.6s forwards";
-                    }, 10);
-                    tails++;
-                }
-                setTimeout(updateStats, 30);
-                disableButton();
+
+            let i = Math.floor(Math.random() * 2);
+            coin.style.animation = "none";
+            if (i) {
+                setTimeout(function () {
+                    coin.style.animation = "spin-heads 0.6s forwards";
+                }, 10);
+                heads++;
             }
+            else {
+                setTimeout(function () {
+                    coin.style.animation = "spin-tails 0.6s forwards";
+                }, 10);
+                tails++;
+            }
+            setTimeout(updateStats, 30);
+            disableButton();
+
         });
         function updateStats() {
             document.querySelector("#heads-count").textContent = `Heads: ${heads}`;

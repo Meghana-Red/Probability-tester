@@ -12,22 +12,26 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        /* Float four columns side by side */
         .column {
             float: left;
-            width: 25%;
-            padding: 20px 10px;
+            width: 50%;
+            padding: 0 10px;
         }
 
+        /* Remove extra left and right margins, due to padding */
         .row {
             margin: 0 -5px;
         }
 
+        /* Clear floats after the columns */
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
 
+        /* Responsive columns */
         @media screen and (max-width: 600px) {
             .column {
                 width: 100%;
@@ -36,8 +40,13 @@
             }
         }
 
-
-
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
 
 
         .flip-card {
@@ -80,83 +89,64 @@
 
 <body>
 
-    <h1>Card Flip with Text</h1>
-    <h3>Hover over the image below:</h3>
+    <h1>Card Flip with Probability</h1>
 
 
     <button onclick="probFlip_100()">100</button>
+
     <div class="row">
-        <div class="column"></div>
         <div class="column">
-
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div id="card1" class="container">
-                            <img src="assets\person2.png" alt="Avatar" style="width:300px;height:300px;">
-                            <h4><b>John Doe</b></h4>
-                            <p>Architect & Engineer</p>
-                            <p id="prob1"></p>
+            <div class="card">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div id="card1" class="container">
+                                <img src="assets\person2.png" alt="Avatar" style="width:300px;height:300px;">
+                                <h4><b>John Doe</b></h4>
+                                <p>Architect & Engineer</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div class="column">
-
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div id="card2" class="container">
-                            <img src="assets\Screenshot 2023-03-01 140626.png" alt="Avatar"
-                                style="width:300px;height:300px;">
-                            <h4><b>Hehehehe</b></h4>
-                            <p>Painter & Designer</p>
-                            <p id="prob2"></p>
+            <div class="card">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div id="card2" class="container">
+                                <img src="assets\Screenshot 2023-03-01 140626.png" alt="Avatar"
+                                    style="width:300px;height:300px;">
+                                <h4><b>Hehehehe</b></h4>
+                                <p>Painter & Designer</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="column"></div>
-
-
-
-
-
 
         <script>
 
 
             function probFlip_100() {
+
                 const element1 = document.getElementById("card1");
                 const element2 = document.getElementById("card2");
                 element1.classList.toggle("card-flip");
+
                 element2.classList.toggle("card-flip");
-                var person1 = 0;
-                var person2 = 0;
-                for (let x = 0; x < 100; x++) {
-                    var flipResult = Math.random();
-                    if (flipResult <= 0.5) {
-                        person1++;
-                    }
-                    else {
-                        person2++;
-                    }
-                }
-                var prob1 = person1 / 100;
-                var prob2 = person2 / 100;
 
 
-                document.getElementById("prob1").innerHTML = "Probability:" + prob1;
-                document.getElementById("prob2").innerHTML = "Probability:" + prob2;
 
 
             }
 
         </script>
+
+
 
 </body>
 
