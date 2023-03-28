@@ -149,17 +149,55 @@
 
     <div class="center">
         <button onclick="probFlip()">Start demonstration</button>
-
     </div>
-
-
     <div class="center_align">
         <p id="display"></p>
-        <p id="prob_100"></p>
-        <p id="prob_1000"></p>
-        <p id="prob_10000"></p>
-        <p id="prob_100000"></p>
     </div>
+
+    <div class="row">
+        <div class="column">
+            <p id="prob_100"></p>
+            <p id="prob_200"></p>
+            <p id="prob_300"></p>
+            <p id="prob_400"></p>
+            <p id="prob_500"></p>
+            <p id="prob_600"></p>
+            <p id="prob_700"></p>
+            <p id="prob_800"></p>
+            <p id="prob_900"></p>
+
+        </div>
+        <div class="column">
+            <p id="prob_1000"></p>
+            <p id="prob_1000"></p>
+            <p id="prob_2000"></p>
+            <p id="prob_3000"></p>
+            <p id="prob_4000"></p>
+            <p id="prob_5000"></p>
+            <p id="prob_6000"></p>
+            <p id="prob_7000"></p>
+            <p id="prob_8000"></p>
+            <p id="prob_9000"></p>
+        </div>
+
+        <div class="column">
+            <p id="prob_10000"></p>
+            <p id="prob_20000"></p>
+            <p id="prob_30000"></p>
+            <p id="prob_40000"></p>
+            <p id="prob_50000"></p>
+            <p id="prob_60000"></p>
+            <p id="prob_70000"></p>
+            <p id="prob_80000"></p>
+            <p id="prob_90000"></p>
+        </div>
+        <div class="column">
+            <p id="prob_100000"></p>
+        </div>
+    </div>
+
+
+
     <div class="center_align">
         <p id="message"></p>
     </div>
@@ -173,39 +211,76 @@
 
 
     <script>
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
 
-        async function Tutor() {
-
-            for (let i = 1; i < 20; i++) {
-                await sleep(3000);
-
-            }
-        }
 
         function probFlip() {
 
             var x = calculate(100);
             document.getElementById("prob_100").innerHTML = "100" + " trials: " + x.toFixed(5);
-            Tutor();
+            x = calculate(200);
+            document.getElementById("prob_200").innerHTML = "200" + " trials: " + x.toFixed(5);
+            x = calculate(300);
+            document.getElementById("prob_300").innerHTML = "300" + " trials: " + x.toFixed(5);
+            x = calculate(400);
+            document.getElementById("prob_400").innerHTML = "400" + " trials: " + x.toFixed(5);
+            x = calculate(500);
+            document.getElementById("prob_500").innerHTML = "500" + " trials: " + x.toFixed(5);
+            x = calculate(600);
+            document.getElementById("prob_600").innerHTML = "600" + " trials: " + x.toFixed(5);
+            x = calculate(700);
+            document.getElementById("prob_700").innerHTML = "700" + " trials: " + x.toFixed(5);
+            x = calculate(800);
+            document.getElementById("prob_800").innerHTML = "800" + " trials: " + x.toFixed(5);
+            x = calculate(900);
+            document.getElementById("prob_900").innerHTML = "900" + " trials: " + x.toFixed(5);
 
             y = calculate(1000);
             document.getElementById("prob_1000").innerHTML = "1000" + " trials: " + y.toFixed(5);
-            Tutor();
+            y = calculate(2000);
+            document.getElementById("prob_2000").innerHTML = "2000" + " trials: " + y.toFixed(5);
+            y = calculate(3000);
+            document.getElementById("prob_3000").innerHTML = "3000" + " trials: " + y.toFixed(5);
+            y = calculate(4000);
+            document.getElementById("prob_4000").innerHTML = "4000" + " trials: " + y.toFixed(5);
+            y = calculate(5000);
+            document.getElementById("prob_5000").innerHTML = "5000" + " trials: " + y.toFixed(5);
+            y = calculate(6000);
+            document.getElementById("prob_6000").innerHTML = "6000" + " trials: " + y.toFixed(5);
+            y = calculate(7000);
+            document.getElementById("prob_7000").innerHTML = "7000" + " trials: " + y.toFixed(5);
+            y = calculate(8000);
+            document.getElementById("prob_8000").innerHTML = "8000" + " trials: " + y.toFixed(5);
+            y = calculate(9000);
+            document.getElementById("prob_9000").innerHTML = "9000" + " trials: " + y.toFixed(5);
+
 
             z = calculate(10000);
             document.getElementById("prob_10000").innerHTML = "10000" + " trials: " + z.toFixed(5);
+            z = calculate(20000);
+            document.getElementById("prob_20000").innerHTML = "20000" + " trials: " + z.toFixed(5);
+            z = calculate(30000);
+            document.getElementById("prob_30000").innerHTML = "30000" + " trials: " + z.toFixed(5);
+            z = calculate(40000);
+            document.getElementById("prob_40000").innerHTML = "40000" + " trials: " + z.toFixed(5);
+            z = calculate(50000);
+            document.getElementById("prob_50000").innerHTML = "50000" + " trials: " + z.toFixed(5);
+            z = calculate(60000);
+            document.getElementById("prob_60000").innerHTML = "60000" + " trials: " + z.toFixed(5);
+            z = calculate(70000);
+            document.getElementById("prob_70000").innerHTML = "70000" + " trials: " + z.toFixed(5);
+            z = calculate(80000);
+            document.getElementById("prob_80000").innerHTML = "80000" + " trials: " + z.toFixed(5);
+            z = calculate(90000);
+            document.getElementById("prob_90000").innerHTML = "90000" + " trials: " + z.toFixed(5);
 
-            // Tutor();
+
 
             a = calculate(100000);
             document.getElementById("prob_100000").innerHTML = "100000" + " trials: " + a.toFixed(5);
 
             // Tutor();
             document.getElementById("message").innerHTML = "After multiple tries, it is clear that complete fairness is achieved around 100000 trials";
-            document.getElementById("display").innerHTML = "Error:";
+            document.getElementById("display").innerHTML = "Error in multiple trials is displayed below";
 
         }
 
@@ -258,3 +333,12 @@
 </body>
 
 </html>
+
+<!-- This is a project where the following things happen:
+> There are two events - heads and tails.
+> Since the total probability is 1, the chances of either of them happening is expected to be 0.5
+> In this program, a random number is taken from 0 to 1.
+> If it is less than 0.5, it gives a point to heads. If it is more than 0.5, it gives a point to tails.
+> Therefore, 100trials equals to 100 random numbers picked.
+> Then the number of times heads and tails occured is calculated.
+> This is checked with the expected outcome and hence we arrive at the error. -->
