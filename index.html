@@ -36,19 +36,29 @@
             }
         }
 
-
-
         .center {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
-            padding-top: 50px;
+            height: 50px;
+            padding-top: 100px;
+            padding-bottom: 60px;
+
         }
 
-        button+button {
-            margin-left: 30px;
+        .center_align {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            padding-top: 10px;
+            padding-bottom: 50px;
+            gap: 20px;
         }
+
+        /* button+button {
+            margin-left: 30px;
+        } */
 
         .flip-card {
             background-color: transparent;
@@ -89,12 +99,16 @@
         h1 {
             text-align: center;
         }
+
+        body {
+            border: 5px solid green;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>Probability</h1>
+    <h1>Probability: Expected v/s Outcome</h1>
 
     <div class="row">
         <div class="column"></div>
@@ -136,10 +150,20 @@
     </div>
 
     <div class="center">
-        <button onclick="probFlip_100()">100</button>
-        <button onclick="probFlip_1000()">1000</button>
-        <button onclick="probFlip_10000()">10000</button>
-        <button onclick="probFlip_100000()">100000</button>
+        <button onclick="probFlip()">Start demonstration</button>
+
+    </div>
+
+
+    <div class="center_align">
+        <p id="display"></p>
+        <p id="prob_100"></p>
+        <p id="prob_1000"></p>
+        <p id="prob_10000"></p>
+        <p id="prob_100000"></p>
+    </div>
+    <div class="center_align">
+        <p id="message"></p>
     </div>
 
 
@@ -147,27 +171,56 @@
 
 
 
+
+
+
     <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function Tutor() {
+
+            for (let i = 1; i < 20; i++) {
+                await sleep(3000);
+
+            }
+        }
+
+        function probFlip() {
+
+            var x = calculate(100);
+            document.getElementById("prob_100").innerHTML = "100" + " trials: " + x.toFixed(5);
+            Tutor();
+
+            y = calculate(1000);
+            document.getElementById("prob_1000").innerHTML = "1000" + " trials: " + y.toFixed(5);
+            Tutor();
+
+            z = calculate(10000);
+            document.getElementById("prob_10000").innerHTML = "10000" + " trials: " + z.toFixed(5);
+
+            // Tutor();
+
+            a = calculate(100000);
+            document.getElementById("prob_100000").innerHTML = "100000" + " trials: " + a.toFixed(5);
+
+            // Tutor();
+            document.getElementById("message").innerHTML = "After multiple tries, it is clear that complete fairness is achieved around 100000 trials";
+            document.getElementById("display").innerHTML = "Error:";
+
+        }
 
 
-        function probFlip_100() {
-            calculate(100);
-        }
-        function probFlip_1000() {
-            calculate(1000);
-        }
-        function probFlip_10000() {
-            calculate(10000);
-        }
-        function probFlip_100000() {
-            calculate(100000);
-        }
 
         function calculate(n) {
+            const errors = [];
             const element1 = document.getElementById("card1");
             const element2 = document.getElementById("card2");
-            element1.classList.toggle("card-flip");
-            element2.classList.toggle("card-flip");
+            if (n == 100000) {
+                element1.classList.toggle("card-flip");
+                element2.classList.toggle("card-flip");
+            }
             var person1 = 0;
             var person2 = 0;
             for (let x = 0; x < n; x++) {
@@ -179,11 +232,26 @@
                     person2++;
                 }
             }
+            //Print the probability for both after n trials
             var prob1 = (person1 / n).toFixed(2);
             var prob2 = (person2 / n).toFixed(2);
-
             document.getElementById("prob1").innerHTML = "Probability:" + prob1;
             document.getElementById("prob2").innerHTML = "Probability:" + prob2;
+            //document.getElementById("prob_err").innerHTML = "Error:" + prob1;
+            //Calculate the error in probability
+
+
+            var prob_err = Math.abs(0.50 - prob1);
+            return prob_err;
+
+
+            // errors.push(prob_err);
+            // const sum = errors.reduce((a, b) => a + b, 0);
+            // const avg = (sum / errors.length) || 0;
+
+
+
+            //document.getElementById("prob_100").innerHTML = "Error in probability of " + n + " trials: " + prob_err;
 
         }
 
