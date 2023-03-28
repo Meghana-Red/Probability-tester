@@ -177,11 +177,18 @@
             const xArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000];
             const yArray = [];
 
-            for (let i = 100; i <= 2900; i = i + 100) {
+            for (let i = 100; i <= 1000; i = i + 100) {
                 x = calculate(i)
                 yArray.push(x.toFixed(3));
             }
-            console.log(yArray);
+            for (let i = 1000; i <= 10000; i = i + 1000) {
+                x = calculate(i)
+                yArray.push(x.toFixed(3));
+            }
+            for (let i = 10000; i <= 100000; i = i + 10000) {
+                x = calculate(i)
+                yArray.push(x.toFixed(3));
+            }
             // Define Data
             const data = [{
                 x: xArray,
