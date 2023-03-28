@@ -15,7 +15,7 @@
 
         .column {
             float: left;
-            width: 25%;
+            width: 30%;
             padding: 20px 10px 50px 20px;
         }
 
@@ -41,20 +41,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50px;
-            padding-top: 100px;
-            padding-bottom: 60px;
+            height: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
 
         }
 
-        .center_align {
+        .center_bottom {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50px;
-            padding-top: 10px;
-            padding-bottom: 50px;
+            text-align-last: center;
+            height: 90px;
+            padding-top: 20px;
+            padding-bottom: 10px;
             gap: 20px;
+        }
+
+        .center_graph {
+            padding-left: 20%;
         }
 
         /* button+button {
@@ -63,9 +68,8 @@
 
         .flip-card {
             background-color: transparent;
-            width: 300px;
-            height: 300px;
-            perspective: 1000px;
+            width: 70px;
+            height: 70px;
         }
 
         .flip-card-inner {
@@ -75,7 +79,7 @@
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
         }
 
         .card-flip {
@@ -107,22 +111,22 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:powderblue;" onLoad="graph();">
 
     <h1>Probability: Expected v/s Outcome</h1>
 
     <div class="row">
-        <div class="column"> Text here to talk about probability theorem.</div>
+        <div class="column"> </div>
         <div class="column">
 
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <div id="card1" class="container">
-                            <img src="assets\heads.webp" alt="Avatar" style="width:300px;height:300px;">
+                            <img src="assets\H.png" alt="Avatar" style="width:70px;height:70px;">
                             <h4><b>HEADS</b></h4>
 
-                            <p id="prob1"></p>
+                            <!-- <p id="prob1"></p> -->
                         </div>
                     </div>
                 </div>
@@ -136,44 +140,63 @@
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <div id="card2" class="container">
-                            <img src="assets\tails.webp" alt="Avatar" style="width:300px;height:300px;">
+                            <img src="assets\T.png" alt="Avatar" style="width:70px;height:70px;">
                             <h4><b>TAILS</b></h4>
-                            <p id="prob2"></p>
+                            <!-- <p id="prob2"></p> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="column">Text here to explain about errors</div>
+
 
     </div>
 
+
+    <div class="center_graph">
+        <div id="myPlot" style="height: 390px;width:100%;max-width:900px"></div>
+
+    </div>
     <div class="center">
-        <button onclick="probFlip()">Start demonstration</button>
-    </div>
-    <div class="center_align">
-        <p id="display"></p>
-    </div>
-    <div id="myPlot" style="width:100%;max-width:700px"></div>
-
-
-
-
-    <div class="center_align">
-        <p id="message"></p>
+        <button onclick="probFlip()">Next Trial</button>
     </div>
 
+    <div class="center_bottom">
+        <p id="message">Probability theory is a field of mathematics and statistics that is concerned with finding the
+            probabilities associated with random events.<br>The error keeps decreasing as the number of trials increas.
+            Therefore, it is imperative to take a large sample size during any experiment in statistics.<br>After
+            multiple tries, it is clear that complete fairness is achieved around 100000 trials.</p>
 
-
-
-
-
+    </div>
 
 
 
     <script>
+        function graph() {
+            const xArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000];
+            const yArray = [0.050, 0.030, 0.030, 0.010, 0.050, 0.010, 0.010, 0.020, 0.010, 0.010, 0.000, 0.010, 0.010, 0.020, 0.010, 0.000, 0.000, 0.010, 0.000, 0.010, 0.000, 0.000, 0.010, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000];
 
+
+            // Define Data
+            const data = [{
+                x: xArray,
+                y: yArray,
+                mode: "lines"
+            }];
+
+            // Define Layout
+            const layout = {
+                xaxis: { range: [0, 100000], title: "No. of Trials" },
+                yaxis: { range: [0.000, 0.100], title: "Difference in Theoretical and Experimental values" },
+                title: "Error in Probability"
+            };
+
+            // Display using Plotly
+            Plotly.newPlot("myPlot", data, layout);
+
+        }
         function probFlip() {
+
             const xArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000];
             const yArray = [];
 
@@ -189,6 +212,7 @@
                 x = calculate(i)
                 yArray.push(x.toFixed(3));
             }
+
             // Define Data
             const data = [{
                 x: xArray,
@@ -199,25 +223,16 @@
             // Define Layout
             const layout = {
                 xaxis: { range: [0, 100000], title: "No. of Trials" },
-                yaxis: { range: [0.000, 0.100], title: "Error" },
+                yaxis: { range: [0.000, 0.100], title: "Difference in Theoretical and Experimental values" },
                 title: "Error in Probability"
             };
 
             // Display using Plotly
             Plotly.newPlot("myPlot", data, layout);
 
-            document.getElementById("message").innerHTML = "After multiple tries, it is clear that complete fairness is achieved around 100000 trials";
-            document.getElementById("display").innerHTML = "Error in multiple trials is displayed below";
+
+
         }
-
-
-
-
-
-
-
-
-
 
         function calculate(n) {
             const errors = [];
@@ -241,24 +256,15 @@
             //Print the probability for both after n trials
             var prob1 = (person1 / n).toFixed(2);
             var prob2 = (person2 / n).toFixed(2);
-            document.getElementById("prob1").innerHTML = "Probability:" + prob1;
-            document.getElementById("prob2").innerHTML = "Probability:" + prob2;
-            //document.getElementById("prob_err").innerHTML = "Error:" + prob1;
+
+
+            // document.getElementById("prob1").innerHTML = "Probability:" + prob1;
+            // document.getElementById("prob2").innerHTML = "Probability:" + prob2;
+
+
             //Calculate the error in probability
-
-
             var prob_err = Math.abs(0.50 - prob1);
             return prob_err;
-
-
-            // errors.push(prob_err);
-            // const sum = errors.reduce((a, b) => a + b, 0);
-            // const avg = (sum / errors.length) || 0;
-
-
-
-            //document.getElementById("prob_100").innerHTML = "Error in probability of " + n + " trials: " + prob_err;
-
         }
 
     </script>
